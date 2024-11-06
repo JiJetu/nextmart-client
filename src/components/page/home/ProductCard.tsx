@@ -6,24 +6,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { TProduct } from "@/types/products.type";
 import Image from "next/image";
 import Link from "next/link";
 
-type Product = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
+type TProductCardProps = {
+  product: TProduct;
 };
 
-const ProductCard = ({ product }: any) => {
+const ProductCard = ({ product }: TProductCardProps) => {
   return (
     <Card className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform hover:scale-105 duration-200">
       {/* Product Image */}
       <CardHeader className="relative overflow-hidden">
         <Image
-          src={product.image}
+          src={product.images}
           alt={product.name}
           width={300}
           height={200}
@@ -53,7 +50,7 @@ const ProductCard = ({ product }: any) => {
           ${product.price.toFixed(2)}
         </span>
         <Link
-          href={`products/${product.name}`}
+          href={`products/${product._id}`}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-500 transition-colors"
         >
           View Details
